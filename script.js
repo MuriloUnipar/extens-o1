@@ -1,8 +1,15 @@
-const placeholderSenha = document.querySelector(".passwordRes")
 const btGerarSenha = document.querySelector(".gerarSenha")
+const btCopiarSenha = document.querySelector(".copy")
+const placeholderSenha = document.querySelector(".passwordRes")
 
 btGerarSenha.addEventListener("click", () => {
   placeholderSenha.innerText = gerarSenha() 
+})
+
+btCopiarSenha.addEventListener("click", (e) => {
+  navigator.clipboard.writeText(placeholderSenha.innerText)
+  e.target.className += " copied"
+  e.target.innerText = "Copiado! 📋"
 })
 
 const inputTesteSenha = document.querySelector(".testar")
@@ -10,8 +17,7 @@ const inputTesteSenha = document.querySelector(".testar")
 inputTesteSenha.addEventListener("input", (event) => {
   const senhaParaTestar = event.target.value
   const statusSenha = analisarSenha(senhaParaTestar)
-  const barraStatus = document.querySelector(".secStatus")
-  barraStatus.innerText = statusSenha
+  gerarStatus(statusSenha)
 })
 
 
@@ -34,10 +40,21 @@ function analisarSenha(senha) {
     /\d/g,
     /[!@#$%^&*()_\+\-=\[\]{}:;,.?<]/g,
   ]
-  let status = 0
-  if (senha.search(listaRegex[0]) !== -1) status += 1
-  if (senha.search(listaRegex[1]) !== -1) status += 1
-  if (senha.search(listaRegex[2]) !== -1) status += 1
-  if (senha.search(listaRegex[3]) !== -1) status += 1
+  let status = ""
+  if (senha.search(listaRegex[0]) !== -1) status = "bad" 
+  if (senha.search(listaRegex[1]) !== -1) status = "normal"
+  if (senha.search(listaRegex[2]) !== -1) status = "good"
+  if (senha.search(listaRegex[3]) !== -1) status = "best"
   return status
+}
+
+function gerarStatus(status) {
+  const possibleStatus = ["bad", "normal", "good", "best"]
+  const barraStatus = document.querySelector(".secStatus")
+  const statusList = barraStatus.classList 
+  if (possibleStatus.some(item => statusList.contains(item))) {
+    statusList.replace(statusList.item(statusList.length - 1), status)
+    return
+  }
+  statusList.add(status)
 }

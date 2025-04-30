@@ -4,6 +4,7 @@
   font-family: "Oswald", sans-serif;
   margin: 0;
   padding: 0;
+  border: 0;
   box-sizing: border-box;
 }
 
@@ -19,4 +20,68 @@ h1 {
 
 p {
   text-align: justify;
+}
+
+button {
+  border-radius: 10px;
+  padding: .5em .8em;
+}
+
+input {
+  border-bottom: 1px solid lightgray;
+}
+input:focus {
+  outline: 0;
+}
+
+button {
+  transition: all .2s ease;
+}
+
+.copy-copied {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: transparent;
+}
+
+.copied {
+  background: green;
+  color: white;
+  transition: all .8s ease;
+}
+
+.secStatus {
+  height: .3rem;
+  background: transparent;
+  transition: all .5s ease;
+}
+
+.bad, .normal, .good, .best {
+  transition: all .5s ease;
+}
+
+.bad {
+  background: red;
+  width: 20%;
+}
+.secStatus.bad::before {
+  display: block;
+  content: "Bad"
+}
+
+.normal {
+  background: yellow;
+  width: 40%;
+}
+
+.good {
+  background: green;
+  width: 60%;
+}
+
+.best {
+  background: blue;
+  width: 100%;
 }
