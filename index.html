@@ -9,7 +9,9 @@
   <body>
     <main>
       <section class="mainSection">
-        <img src="./assets/confused.svg" alt="iconConfused" class="confusedIcon">
+        <img src="./assets/confused.svg" alt="iconConfused" class="icon confused">
+        <img src="./assets/password.svg" alt="iconPass" class="icon pass">
+        <img src="./assets/protection.svg" alt="iconProtection" class="icon protection">
         <h1 class="font-large">Gerador de Senhas Seguras</h1>
         <p class="font-large">A importância de senhas seguras
 
@@ -29,10 +31,22 @@ Proteger-se online começa com atitudes simples, e a escolha de boas senhas é u
       <section>
         <p class="font-normal margin-bottom-small">Para criar uma senha segura, combine letras maiúsculas e minúsculas, números e símbolos. Evite usar informações óbvias como datas de nascimento ou nomes comuns. Uma boa prática é criar frases curtas misturando palavras inesperadas ou usar geradores de senhas confiáveis. O ideal é que sua senha tenha pelo menos 12 caracteres e seja única para cada conta.</p>
         <input type="text" class="testar font-normal" placeholder="Teste sua senha aqui">
-        <span class="secStatus font-small margin-bottom-large"><span></span></span>
+        <span class="secStatus font-small"></span>
+        <ul class="statusList margin-bottom-large font-normal">
+          <li><span data-status="2">❌</span> 12 Caracteres</li>
+          <li><span data-status="A">❌</span> Letras Maiúsculas</li>
+          <li><span data-status="a">❌</span> Letras Minúsculas</li>
+          <li><span data-status="1">❌</span> Números</li>
+          <li><span data-status="@">❌</span> Simbolos</li>
+        </ul>
       </section>
       <script src="script.js"></script>
     </main>
+    <footer>
+      <span><a href="https://unipar.br">Unipar - Universidade do Paraná</a></span>
+      <span>Murilo - Emerson - Guilherme - Gustavo - Caio</span>
+      <span>All Icons By - <a href="https://www.flaticon.com/authors/freepik">Frepik</a></span>
+    </footer>
   
   </body>
 </html>

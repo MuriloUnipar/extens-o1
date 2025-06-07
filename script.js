@@ -6,9 +6,7 @@ btGerarSenha.addEventListener("click", () => {
   let genPass;
   do {
     genPass = gerarSenha()
-    console.log(analisarSenha(genPass))
-    debugCounter++
-  } while (analisarSenha(genPass) <= 3)
+  } while (analisarSenha(genPass).score <= 3)
 
   placeholderSenha.innerText = genPass 
 })
@@ -24,7 +22,7 @@ const inputTesteSenha = document.querySelector(".testar")
 inputTesteSenha.addEventListener("input", (event) => {
   const senhaParaTestar = event.target.value
   const statusSenha = analisarSenha(senhaParaTestar)
-  gerarStatus(statusSenha)
+  atualizarStatus(statusSenha.score)
 })
 
 
@@ -49,15 +47,40 @@ function analisarSenha(senha) {
     /\d/g,
     /[!@#$%^&*()_\+\-=\[\]{}:;,.?<]/g,
   ]
-  let status = 0
-  if (senha.search(listaRegex[0]) !== -1) status++ 
-  if (senha.search(listaRegex[1]) !== -1) status++
-  if (senha.search(listaRegex[2]) !== -1) status++
-  if (senha.search(listaRegex[3]) !== -1) status++
+  let status = { score: 0, attr: "" }
+  if (senha.search(listaRegex[0]) !== -1) {
+    status.score++
+    status.attr += "a"
+  } 
+  if (senha.search(listaRegex[1]) !== -1) {
+    status.score++
+    status.attr += "A"
+  }
+  if (senha.search(listaRegex[2]) !== -1) {
+    status.score++
+    status.attr += "1"
+  }
+  if (senha.search(listaRegex[3]) !== -1) {
+    status.score++
+    status.attr += "@"
+  }
+  if (senha.length >= 12) {
+    status.attr += "2"
+  }
+
+  const listaStatus = document.querySelector(".statusList").children
+  for (child of listaStatus) {
+    const checker = child.children[0]
+    const checkerID = checker.dataset.status
+    checker.textContent = status.attr.includes(checkerID) 
+      ? "✔️"
+      : "❌" 
+  }
+
   return status
 }
 
-function gerarStatus(status) {
+function atualizarStatus(status) {
   const possibleStatus = ["bad", "normal", "good", "best"]
   const barraStatus = document.querySelector(".secStatus")
   const statusList = barraStatus.classList 

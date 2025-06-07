@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 * {
+  color: #e1e1e1;
   font-family: "Oswald", sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
   line-height: 1.2em;
+}
+html {
+  background: linear-gradient(90deg,rgba(0, 153, 255, 1) 0%, rgba(42, 78, 222, 1) 50%, rgba(0, 81, 255, 1) 100%);
 }
 
 main, section {
@@ -19,18 +23,44 @@ h1 {
   text-align: center;
   margin-block: 1em;
 }
+.icon {
+  position: absolute;
+  width: 12em;
+  filter: invert(1);
+}
+
+.confused {
+  top: 10em;
+  left: 6em;
+}
+
+.pass {
+  width: 8em;
+  top: 0;
+  left: 32em;
+  right: 0;
+  margin: 0 auto;
+  filter: invert(1)
+}
+
+.protection {
+  top: 20em;
+  right: 6em;
+}
 
 p {
   text-align: justify;
 }
 
 button {
+  color: black;
   border-radius: 10px;
   padding: .5em .8em;
   transition: all .2s ease;
 }
 
 input {
+  background: transparent;
   border-bottom: 1px solid lightgray;
   font-size: inherit;
 }
@@ -38,9 +68,14 @@ input:focus {
   outline: 0;
 }
 
-
 .mainSection div {
   margin: 1em auto;
+  padding: 1em;
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.mainSection div span {
+  color: black;
 }
 
 .copy-copied {
@@ -66,6 +101,9 @@ input:focus {
 .bad, .normal, .good, .best {
   transition: all .5s ease;
 }
+.secStatus::before {
+  margin: .1em;
+}
 
 .bad {
   background: red;
@@ -73,7 +111,7 @@ input:focus {
 }
 .secStatus.bad::before {
   display: block;
-  content: "Bad"
+  content: "Ruim"
 }
 
 .normal {
@@ -91,7 +129,7 @@ input:focus {
 }
 .secStatus.good::before {
   display: block;
-  content: "Good"
+  content: "Boa"
 }
 
 .best {
@@ -100,7 +138,7 @@ input:focus {
 }
 .secStatus.best::before {
   display: block;
-  content: "Best!"
+  content: "Muito Boa!"
 }
 
 
@@ -121,4 +159,18 @@ input:focus {
 }
 .margin-bottom-large {
   margin-bottom: 5em;
+}
+
+ul {
+  list-style: none;
+  padding: 2em 0;
+}
+
+footer {
+  font-size: 1.6em;
+  padding: 3em;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
