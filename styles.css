@@ -6,6 +6,7 @@
   padding: 0;
   border: 0;
   box-sizing: border-box;
+  line-height: 1.2em;
 }
 
 main, section {
@@ -16,6 +17,7 @@ main, section {
 
 h1 {
   text-align: center;
+  margin-block: 1em;
 }
 
 p {
@@ -25,17 +27,20 @@ p {
 button {
   border-radius: 10px;
   padding: .5em .8em;
+  transition: all .2s ease;
 }
 
 input {
   border-bottom: 1px solid lightgray;
+  font-size: inherit;
 }
 input:focus {
   outline: 0;
 }
 
-button {
-  transition: all .2s ease;
+
+.mainSection div {
+  margin: 1em auto;
 }
 
 .copy-copied {
@@ -75,13 +80,45 @@ button {
   background: yellow;
   width: 40%;
 }
+.secStatus.normal::before {
+  display: block;
+  content: "Normal"
+}
 
 .good {
   background: green;
   width: 60%;
 }
+.secStatus.good::before {
+  display: block;
+  content: "Good"
+}
 
 .best {
-  background: blue;
+  background: cornflowerblue;
   width: 100%;
+}
+.secStatus.best::before {
+  display: block;
+  content: "Best!"
+}
+
+
+.font-small {
+  font-size: 1.2em;
+}
+.font-normal {
+  font-size: 1.5em;
+}
+.font-large {
+  font-size: 2em;
+}
+.padding-block {
+  padding-block: 2em; 
+}
+.margin-bottom-small {
+  margin-bottom: 1.2em;
+}
+.margin-bottom-large {
+  margin-bottom: 5em;
 }

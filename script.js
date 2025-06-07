@@ -3,7 +3,14 @@ const btCopiarSenha = document.querySelector(".copy")
 const placeholderSenha = document.querySelector(".passwordRes")
 
 btGerarSenha.addEventListener("click", () => {
-  placeholderSenha.innerText = gerarSenha() 
+  let genPass;
+  do {
+    genPass = gerarSenha()
+    console.log(analisarSenha(genPass))
+    debugCounter++
+  } while (analisarSenha(genPass) <= 3)
+
+  placeholderSenha.innerText = genPass 
 })
 
 btCopiarSenha.addEventListener("click", (e) => {
@@ -21,8 +28,8 @@ inputTesteSenha.addEventListener("input", (event) => {
 })
 
 
-function gerarSenha(tamanho = 12) {
-  const caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-={}:;,.?<'
+function gerarSenha(tamanho = 12, counter = null) {
+  const caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*:;?'
 
   let senha = ''
   for (let i = 0; i < tamanho; i++) {
@@ -30,6 +37,8 @@ function gerarSenha(tamanho = 12) {
     senha += caracteres[indiceAleatorio]
   }
 
+  console.log(`Running for ${counter}`)
+  console.log(senha)
   return senha;
 }
 
@@ -40,11 +49,11 @@ function analisarSenha(senha) {
     /\d/g,
     /[!@#$%^&*()_\+\-=\[\]{}:;,.?<]/g,
   ]
-  let status = ""
-  if (senha.search(listaRegex[0]) !== -1) status = "bad" 
-  if (senha.search(listaRegex[1]) !== -1) status = "normal"
-  if (senha.search(listaRegex[2]) !== -1) status = "good"
-  if (senha.search(listaRegex[3]) !== -1) status = "best"
+  let status = 0
+  if (senha.search(listaRegex[0]) !== -1) status++ 
+  if (senha.search(listaRegex[1]) !== -1) status++
+  if (senha.search(listaRegex[2]) !== -1) status++
+  if (senha.search(listaRegex[3]) !== -1) status++
   return status
 }
 
@@ -53,8 +62,8 @@ function gerarStatus(status) {
   const barraStatus = document.querySelector(".secStatus")
   const statusList = barraStatus.classList 
   if (possibleStatus.some(item => statusList.contains(item))) {
-    statusList.replace(statusList.item(statusList.length - 1), status)
+    statusList.replace(statusList.item(statusList.length - 1), possibleStatus[status-1])
     return
   }
-  statusList.add(status)
+  statusList.add(possibleStatus[status-1])
 }
